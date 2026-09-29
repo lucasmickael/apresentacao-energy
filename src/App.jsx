@@ -189,8 +189,20 @@ export default function App() {
     }
   };
 
+  // Efeito de Spotlight que segue o mouse
+  const handleMouseMove = (e) => {
+    const target = e.currentTarget;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    target.style.setProperty('--mouse-x', `${x}px`);
+    target.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
-    <div style={{
+    <div 
+      onMouseMove={handleMouseMove}
+      style={{
       position: 'relative',
       width: '100vw',
       height: '100vh',

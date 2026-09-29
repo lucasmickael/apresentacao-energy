@@ -1,5 +1,26 @@
 import React from 'react';
 import { Zap, EyeOff, TrendingUp, HelpCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 300, damping: 24 }
+  }
+};
 
 export default function SlideContext({ data }) {
   const icons = {
@@ -9,16 +30,21 @@ export default function SlideContext({ data }) {
   };
 
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      position: 'relative'
-    }}>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        position: 'relative'
+      }}
+    >
       {/* Título e Subtítulo */}
-      <div>
+      <motion.div variants={itemVariants}>
         <span className="badge-energy" style={{ marginBottom: '8px' }}>
           {data.subtitle}
         </span>
@@ -28,25 +54,33 @@ export default function SlideContext({ data }) {
         <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', maxWidth: '780px' }}>
           A eletricidade é a força motriz invisível de nossas vidas: consumimos a todo instante, mas sem a percepção imediata do seu custo real.
         </p>
-      </div>
+      </motion.div>
 
       {/* Grid de 3 Cards Conceituais */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '24px',
-        margin: 'auto 0'
-      }}>
+      <motion.div 
+        variants={itemVariants}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '24px',
+          margin: 'auto 0'
+        }}
+      >
         {data.cards.map((card, i) => (
-          <div key={i} className="glass-panel" style={{
-            padding: '2rem 1.75rem',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            borderRadius: '18px',
-            position: 'relative',
-            overflow: 'hidden'
-          }}>
+          <motion.div 
+            key={i} 
+            whileHover={{ scale: 1.02 }}
+            className="glass-panel" 
+            style={{
+              padding: '2rem 1.75rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              borderRadius: '18px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
             <div style={{
               position: 'absolute',
               top: '-20px',
@@ -96,12 +130,12 @@ export default function SlideContext({ data }) {
               <span>DIMENSÃO 0{i + 1}</span>
               <span style={{ color: 'var(--yellow-primary)' }}>●</span>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Conclusão do Slide */}
-      <div className="glass-panel" style={{
+      <motion.div variants={itemVariants} className="glass-panel" style={{
         padding: '12px 24px',
         display: 'flex',
         alignItems: 'center',
@@ -126,7 +160,7 @@ export default function SlideContext({ data }) {
         <span style={{ fontSize: '0.92rem', color: '#F1F5F9' }}>
           <strong>O Paradoxo da Gestão:</strong> Ninguém consegue economizar ou tomar decisões racionais sobre algo que não consegue visualizar em tempo real.
         </span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
