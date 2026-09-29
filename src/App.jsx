@@ -195,13 +195,15 @@ export default function App() {
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      userSelect: 'none'
+      userSelect: 'none',
+      background: 'var(--bg-primary)'
     }}>
-      {/* Camadas de Fundo Tecnológico */}
-      <div className="cyber-bg" />
-      <div className="cyber-circuit-overlay" />
+      {/* Camada 1: Fundo com grade de circuitos */}
+      <div className="cyber-bg" style={{ zIndex: 0 }} />
+      {/* Camada 2: Glow sutil */}
+      <div className="cyber-circuit-overlay" style={{ zIndex: 1 }} />
 
-      {/* Cabeçalho */}
+      {/* Camada 3: Cabeçalho */}
       <Header
         currentSlide={currentIndex + 1}
         totalSlides={SLIDES.length}
@@ -220,8 +222,14 @@ export default function App() {
         }}
       />
 
-      {/* Contêiner de Slides com Transição Direcional */}
-      <main className="slide-container" style={{ flex: 1, position: 'relative' }}>
+      {/* Camada 4: Área principal dos slides */}
+      <main style={{
+        flex: 1,
+        position: 'relative',
+        overflow: 'hidden',
+        zIndex: 10,
+        minHeight: 0
+      }}>
         <div
           key={currentIndex}
           className={`slide-wrapper ${navDirection === 'next' ? 'slide-enter-next' : 'slide-enter-prev'}`}
@@ -230,7 +238,7 @@ export default function App() {
         </div>
       </main>
 
-      {/* Rodapé com Navegação */}
+      {/* Camada 5: Rodapé com Navegação */}
       <Footer
         currentIndex={currentIndex}
         totalSlides={SLIDES.length}

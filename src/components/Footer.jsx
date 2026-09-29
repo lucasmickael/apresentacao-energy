@@ -11,10 +11,7 @@ export default function Footer({
 }) {
   return (
     <footer style={{
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
+      position: 'relative',
       padding: '0.75rem 3.5rem 1rem 3.5rem',
       display: 'flex',
       alignItems: 'center',
