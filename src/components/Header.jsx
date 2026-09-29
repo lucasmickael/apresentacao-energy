@@ -11,6 +11,7 @@ import {
   VolumeX 
 } from 'lucide-react';
 import { sound } from '../utils/audioSynth';
+import logoEenergy from '../assets/logo-eenergy.png';
 
 export default function Header({ 
   currentSlide, 
@@ -39,7 +40,7 @@ export default function Header({
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <img 
-            src="/logo-eenergy.png" 
+            src={logoEenergy} 
             alt="E-Energy Logo" 
             style={{
               width: '34px',

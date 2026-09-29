@@ -1,6 +1,7 @@
 import React from 'react';
 import { Zap, Sparkles, Award, Users, GraduationCap, ChevronRight } from 'lucide-react';
 import { TEAM_INFO } from '../../data/slidesData';
+import logoEenergy from '../../assets/logo-eenergy.png';
 
 export default function SlideCover({ onNext }) {
   return (
@@ -163,7 +164,7 @@ export default function SlideCover({ onNext }) {
             zIndex: 2
           }}>
             <img 
-              src="/logo-eenergy.png" 
+              src={logoEenergy} 
               alt="E-Energy Logo" 
               style={{
                 width: '130px',
