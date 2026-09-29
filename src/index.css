@@ -1,0 +1,332 @@
+/* index.css - Design System E-Energy TCC 2026 */
+
+:root {
+  --bg-primary: #07090E;
+  --bg-secondary: #0D111A;
+  --bg-card: rgba(16, 22, 34, 0.75);
+  --bg-card-hover: rgba(24, 33, 50, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-yellow: rgba(250, 204, 21, 0.3);
+  --border-yellow-glow: rgba(250, 204, 21, 0.6);
+
+  --yellow-primary: #FACC15;
+  --yellow-light: #FEF08A;
+  --yellow-glow: #FFE600;
+  --yellow-dark: #CA8A04;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --cyan-accent: #38BDF8;
+  --green-accent: #4ADE80;
+  --red-accent: #F87171;
+
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-glow: 0 0 30px rgba(250, 204, 21, 0.18);
+  --shadow-glow-strong: 0 0 50px rgba(250, 204, 21, 0.35);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Fundo Tecnológico com Grade de Circuitos e Gradiente Radial */
+.cyber-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow lines animadas */
+.cyber-circuit-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 40%, rgba(250, 204, 21, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(250, 204, 21, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glassmorphism Card */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(250, 204, 21, 0.25);
+  box-shadow: 0 14px 40px -8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(250, 204, 21, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(16, 22, 34, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-yellow);
+  box-shadow: var(--shadow-glow);
+  border-radius: 20px;
+}
+
+/* Badges */
+.badge-energy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow-primary);
+  background: rgba(250, 204, 21, 0.1);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  border-radius: 9999px;
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
+}
+
+.badge-speaker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Botões Modernos */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--yellow-primary) 0%, #EAB308 100%);
+  color: #0B0F17;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(250, 204, 21, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(250, 204, 21, 0.5);
+  background: linear-gradient(135deg, #FFE600 0%, #FACC15 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background: rgba(250, 204, 21, 0.15);
+  border-color: var(--border-yellow);
+  color: var(--yellow-primary);
+  transform: translateY(-1px);
+}
+
+/* Animações e Pulsos */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes energyFlow {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flow-line {
+  stroke-dasharray: 8 6;
+  animation: energyFlow 1.2s linear infinite;
+}
+
+/* Slide Navigation Transitions (Directional Slide) */
+.slide-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  inset: 0;
+  padding: 2.5rem 4rem 4rem 4rem;
+  box-sizing: border-box;
+}
+
+/* Modos de Transição */
+.slide-enter-next {
+  animation: slideInFromRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-enter-prev {
+  animation: slideInFromLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Scrollbar estilizada */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow-primary);
+}
+
+/* Otimização para projeção (16:9 standard ratio) */
+@media (max-aspect-ratio: 16/9) {
+  .slide-wrapper {
+    padding: 2rem 2.5rem 3.5rem 2.5rem;
+  }
+}
+
+/* Redução de movimento para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .slide-enter-next, .slide-enter-prev, .flow-line, .pulse-glow {
+    animation: none !important;
+    transition: none !important;
+  }
+}
