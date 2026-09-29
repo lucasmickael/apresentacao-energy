@@ -2,20 +2,46 @@ import React from 'react';
 import { Zap, Sparkles, Award, Users, GraduationCap, ChevronRight } from 'lucide-react';
 import { TEAM_INFO } from '../../data/slidesData';
 import logoEenergy from '../../assets/logo-eenergy.png';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 300, damping: 24 }
+  }
+};
 
 export default function SlideCover({ onNext }) {
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      position: 'relative',
-      zIndex: 10
-    }}>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        position: 'relative',
+        zIndex: 10
+      }}
+    >
       {/* Topo: Instituição e Ano */}
-      <div style={{
+      <motion.div variants={itemVariants} style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -47,7 +73,7 @@ export default function SlideCover({ onNext }) {
           <Award size={16} color="#38BDF8" />
           <span>Curso Técnico Integrado ao Ensino Médio</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* Centro: Hero Title e Visual Principal */}
       <div style={{
@@ -58,7 +84,7 @@ export default function SlideCover({ onNext }) {
         margin: 'auto 0'
       }}>
         {/* Esquerda: Tipografia Impactante */}
-        <div>
+        <motion.div variants={itemVariants}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
             <span style={{
               width: '8px',
@@ -114,23 +140,32 @@ export default function SlideCover({ onNext }) {
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-            <button onClick={onNext} className="btn-primary" style={{ padding: '14px 28px', fontSize: '1rem' }}>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onNext} 
+              className="btn-primary" 
+              style={{ padding: '14px 28px', fontSize: '1rem' }}
+            >
               <span>Iniciar Apresentação</span>
               <ChevronRight size={18} />
-            </button>
+            </motion.button>
             <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               (Pressione <strong>Espaço</strong> ou <strong>→</strong>)
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Direita: Elemento Gráfico de Hardware / Energia */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'relative'
-        }}>
+        <motion.div 
+          variants={itemVariants}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative'
+          }}
+        >
           {/* Anéis de energia concêntricos */}
           <div style={{
             width: '320px',
@@ -150,7 +185,10 @@ export default function SlideCover({ onNext }) {
           }} />
 
           {/* Card Central com Ícone de Alta Tecnologia */}
-          <div className="glass-panel-glow" style={{
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="glass-panel-glow" style={{
             width: '200px',
             height: '200px',
             borderRadius: '32px',
@@ -173,12 +211,12 @@ export default function SlideCover({ onNext }) {
                 filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.5))'
               }}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Rodapé da Capa: Integrantes e Orientadores em Cards Nobres */}
-      <div style={{
+      <motion.div variants={itemVariants} style={{
         display: 'grid',
         gridTemplateColumns: '2fr 1fr',
         gap: '20px',
@@ -228,7 +266,7 @@ export default function SlideCover({ onNext }) {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

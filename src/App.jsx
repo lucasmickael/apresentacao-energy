@@ -4,6 +4,8 @@ import Footer from './components/Footer';
 import PresenterModal from './components/PresenterModal';
 import SlideOverviewModal from './components/SlideOverviewModal';
 import ShortcutsModal from './components/ShortcutsModal';
+import ParticlesBackground from './components/ParticlesBackground';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Slides E-Energy
 import SlideCover from './components/slides/SlideCover';
@@ -198,8 +200,8 @@ export default function App() {
       userSelect: 'none',
       background: 'var(--bg-primary)'
     }}>
-      {/* Camada 1: Fundo com grade de circuitos */}
-      <div className="cyber-bg" style={{ zIndex: 0 }} />
+      {/* Camada 1: Fundo animado de partículas high-tech */}
+      <ParticlesBackground />
       {/* Camada 2: Glow sutil */}
       <div className="cyber-circuit-overlay" style={{ zIndex: 1 }} />
 
@@ -222,7 +224,7 @@ export default function App() {
         }}
       />
 
-      {/* Camada 4: Área principal dos slides */}
+      {/* Camada 4: Área principal dos slides animada com Framer Motion */}
       <main style={{
         flex: 1,
         position: 'relative',
@@ -230,12 +232,25 @@ export default function App() {
         zIndex: 10,
         minHeight: 0
       }}>
-        <div
-          key={currentIndex}
-          className={`slide-wrapper ${navDirection === 'next' ? 'slide-enter-next' : 'slide-enter-prev'}`}
-        >
-          {renderSlideContent()}
-        </div>
+        <AnimatePresence initial={false} mode="wait" custom={navDirection}>
+          <motion.div
+            key={currentIndex}
+            className="slide-wrapper"
+            custom={navDirection}
+            initial={{ opacity: 0, x: navDirection === 'next' ? 60 : -60, scale: 0.96 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: navDirection === 'next' ? -60 : 60, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 220, damping: 25 }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%'
+            }}
+          >
+            {renderSlideContent()}
+          </motion.div>
+        </AnimatePresence>
       </main>
 
       {/* Camada 5: Rodapé com Navegação */}
